@@ -1,3 +1,5 @@
+Runs in Python with pandas and numpy packages. 
+
 Allows the creation of a csv file to upload to Canvas by typing in a few letters of a student's name and the score.
 The canvas file should be obtained by downloading the gradebook with the students and deleting all of the columns except (Student	ID,	SIS User ID,	SIS Login ID	,Section).
 This file can then be reused for the class every time.
