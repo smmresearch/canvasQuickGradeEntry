@@ -2,7 +2,7 @@ Allows the creation of a csv file to upload to Canvas by typing in a few letters
 The canvas file should be obtained by downloading the gradebook with the students and deleting all of the columns except (Student	ID,	SIS User ID,	SIS Login ID	,Section).
 This file can then be reused for the class every time.
 
-It looks up students based upon 1-4 letters of the first name and 1-4 letters of the last name (lower case, no space). There is also a fallback of the full name.
+It looks up students based upon 1-4 letters of the first name and 1-4 letters of the last name (case insensitive, no space). There is also a fallback of the full name.
 For example, Jillian Weeks could be found with jw, jwee, jiwe, jilw, etc., and jillianweeks.
 If multiple students in the class have similar initials, the user is prompted to add more letters to update the score.
 
