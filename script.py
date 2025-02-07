@@ -19,14 +19,23 @@ options = ["finish", "undoit", "viewit", "restZero"]
 for i in range(1,len(canvas_df)):
     #Groups Last name 1 last name 2, first name 1 first name 2 first name 3
     r = re.match(r"([A-Z][A-Za-z]*)(?:[- ]([A-Z][A-Za-z]*))?, ?([A-Z][A-Za-z]*)(?:[- ]([A-Z][A-Za-z]*))?(?:[- ]([A-Z][A_Za-z]*))?",canvas_df['Student'][i])
-    lasts = [r.group(i) for i in range(1,3) if r.group(i) is not None]
-    firsts = [r.group(i) for i in range(3,6) if r.group(i) is not None]
-    for l in lasts:
-        for f in firsts:
+    orderedNames = [r.group(3),r.group(4),r.group(5),r.group(1),r.group(2)]
+    for nameI in range(5):
+        if orderedNames[nameI] is not None:
+            orderedNames[nameI] = str.lower(orderedNames[nameI])
+    #lasts = [r.group(i) for i in range(1,5) if r.group(i) is not None]
+    #firsts = [r.group(i) for i in range(2,6) if r.group(i) is not None]
+    for fIdx in range(0,4):
+        f = orderedNames[fIdx]
+        if f is None:
+            continue
+        for lIdx in range(fIdx+1,5):
+            l = orderedNames[lIdx]
+            if l is None:
+                continue
             for firstL in range(1,6):
                 for lastL in range(1,6):
                     nameShort = f[0:firstL] + l[0:lastL]
-                    nameShort = str.lower(nameShort)
                     if nameShort in options:
                         continue
                     if nameShort not in nameMatches or (nameMatches[nameShort]==i):
@@ -35,7 +44,7 @@ for i in range(1,len(canvas_df)):
                         if firstL+lastL>=3:
                             print("WARNING: name clash for "+nameShort)
                         nameMatches[nameShort] = -1
-            nameShort = str.lower(f+l)
+            nameShort = f+l
             if nameShort in options:
                 continue
             if nameShort not in nameMatches or (nameMatches[nameShort]==i):
@@ -79,7 +88,9 @@ while(True):
             continue
         try:
             student = canvas_df['Student'][idx]
-            score = float(input(f"\n{student}'s Score (supports np.nan; type a letter to go back)\n"))
+            studentSplit = re.match("(.*), (.*)",student)
+            student =f"{studentSplit.group(2)} {studentSplit.group(1)}"
+            score = float(input(f"\n{student}'s Score (supports \"nan\" to reset to blank; type a letter to go back)\n"))
         except:
             continue
         prevScore = canvas_df[grade_name][idx]
@@ -88,7 +99,7 @@ while(True):
         #print(canvas_df)
         print(f"Updated {student} to score {score}")
         if score>points*1.1:
-            print("Warning: grade better than 110%")
+            print("WARNING: grade better than 110%")
     except:
         print("name not found")
         continue
