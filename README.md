@@ -16,7 +16,10 @@ If the initials collide with one of the options below, it cannot be used.
 It provides a warning for grades higher than 110% of the points possible.
 
 Other options:
+
 viewit: shows the current state of the table
 finish: saves the final CSV
+
 restZero: sets all currently blank entries to be 0
+
 undoit: undoes the last score change
