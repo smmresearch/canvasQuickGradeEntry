@@ -6,7 +6,6 @@ canvas_file="canvasBaseS24.csv"
 grade_name = input("Assignment name:\n")
 points = float(input("\nPoints possible: \n"))
 canvas_df = pd.read_csv(canvas_file)
-# Cut out the first row for later
 canvas_df = canvas_df[['Student', 'ID', 'SIS User ID', 'SIS Login ID', 'Section']]
 canvas_df[grade_name] = np.nan
 canvas_df.loc[0,grade_name] = points
@@ -15,7 +14,6 @@ nameMatches = dict()
 options = ["finish", "undoit", "viewit", "restZero"]
 
 #0th row is Points possible
-#re.match(r"(\w+) (\w+)", "Isaac Newton, physicist")
 for i in range(1,len(canvas_df)):
     #Groups Last name 1 last name 2, first name 1 first name 2 first name 3
     r = re.match(r"([A-Z][A-Za-z]*)(?:[- ]([A-Z][A-Za-z]*))?, ?([A-Z][A-Za-z]*)(?:[- ]([A-Z][A-Za-z]*))?(?:[- ]([A-Z][A_Za-z]*))?",canvas_df['Student'][i])
