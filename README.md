@@ -18,6 +18,7 @@ It provides a warning for grades higher than 110% of the points possible.
 Other options:
 
 viewit: shows the current state of the table
+
 finish: saves the final CSV
 
 restZero: sets all currently blank entries to be 0
