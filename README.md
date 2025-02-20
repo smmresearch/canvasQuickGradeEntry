@@ -24,3 +24,5 @@ finish: saves the final CSV
 restZero: sets all currently blank entries to be 0
 
 undoit: undoes the last score change
+
+On line 97, ``float`` could be changed to ``eval`` to support arithmetic operations, though ``eval`` is a security nightmare, so don't be copying and pasting things into the prompt if you do this.
